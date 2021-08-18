@@ -1,0 +1,36 @@
+{
+  "name": "events-graph-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Kanstantsin Nerushkin <kanstantsin.nerushkin@rumblefish.pl>",
+  "license": "MIT",
+  "scripts": {
+    "types": "yarn typechain --target ethers-v5 --out-dir types/contracts 'artifacts/contracts/**/*.json'",
+    "compile": "yarn hardhat compile",
+    "build": "yarn compile; yarn rimraf **/*.dbg.json; yarn types",
+    "deploy": "yarn ts-node ./scripts/deploy.ts",
+    "test": "yarn ts-node ./scripts/test.ts",
+    "ganache": "ganache-cli --accounts 10 --hardfork istanbul --gasLimit 12000000 --gasPrice 0 --mnemonic brownie --port 7545"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "@typechain/ethers-v5": "^7.0.1",
+    "@types/node": "^16.6.1",
+    "chai": "^4.3.4",
+    "ethereum-waffle": "^3.4.0",
+    "ganache-cli": "^6.12.2",
+    "hardhat": "^2.6.0",
+    "truffle": "^5.4.6",
+    "ts-node": "^10.2.0",
+    "typechain": "^5.1.2",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.3.0",
+    "@polyjuice-provider/ethers": "^0.0.1-rc7",
+    "@polyjuice-provider/web3": "^0.0.1-rc7",
+    "ethers": "^5.4.4",
+    "nervos-godwoken-integration": "^0.0.6"
+  }
+}
