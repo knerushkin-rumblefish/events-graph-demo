@@ -13,6 +13,8 @@ const localProvider = new providers.JsonRpcProvider(
 
 export const provider = localProvider
 
+export const translateAddress = (address: string) => address
+
 export const deployer = new Wallet(
   DEPLOYER_PRIVATE_KEY,
   localProvider

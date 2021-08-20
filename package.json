@@ -7,10 +7,12 @@
   "scripts": {
     "types": "yarn typechain --target ethers-v5 --out-dir types/contracts 'artifacts/contracts/**/*.json'",
     "compile": "yarn hardhat compile",
+    "abis": "rm -rf abis; mkdir abis; cp -r artifacts/contracts/**/*.json ./abis/",
     "build": "yarn compile; yarn rimraf **/*.dbg.json; yarn types",
     "deploy": "yarn ts-node ./scripts/deploy.ts",
     "test": "yarn ts-node ./scripts/test.ts",
-    "ganache": "ganache-cli --accounts 10 --hardfork istanbul --gasLimit 12000000 --gasPrice 0 --mnemonic brownie --port 7545"
+    "codegen": "graph codegen --output-dir generated/types",
+    "ganache": "ganache-cli --accounts 10 --hardfork istanbul --gasLimit 12000000 --gasPrice 0 --mnemonic brownie -h 0.0.0.0 --port 7545"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
@@ -27,6 +29,8 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
+    "@graphprotocol/graph-cli": "^0.21.1",
+    "@graphprotocol/graph-ts": "^0.20.0",
     "@openzeppelin/contracts": "^4.3.0",
     "@polyjuice-provider/ethers": "^0.0.1-rc7",
     "@polyjuice-provider/web3": "^0.0.1-rc7",

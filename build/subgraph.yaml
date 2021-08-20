@@ -1,0 +1,24 @@
+specVersion: 0.0.2
+description: Liquidity Pool
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: LiquidityPool
+    network: mainnet
+    source:
+      address: "0xC14bC37d09647CB9567CBeDDAc5f7e5E0875c452"
+      abi: LiquidityPool
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Deposit
+      abis:
+        - name: LiquidityPool
+          file: LiquidityPool/abis/LiquidityPool.json
+      eventHandlers:
+        - event: Deposit(address,uint256)
+          handler: handleDeposit
+      file: LiquidityPool/LiquidityPool.wasm

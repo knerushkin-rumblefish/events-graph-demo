@@ -2,13 +2,17 @@
 import { LiquidityPool, ExtendedERC20 } from '../types/contracts'
 
 import { BigNumber } from '@ethersproject/bignumber'
-import { deployer, transactionOverrides } from './deployment'
+import { deployer, transactionOverrides, translateAddress } from './deployment'
 
 
 export async function deposit(liquidityPool: LiquidityPool, underlyingToken: ExtendedERC20) {
+  const deployerAddress = translateAddress(deployer.address)
+
   try {
-    const balance = await underlyingToken.balanceOf(deployer.address)
+    console.log('\nbalance')
+    const balance = await underlyingToken.balanceOf(deployerAddress)
     console.log('balance', balance.toString())
+    console.log('balance\n')
 
     const decimals = await underlyingToken.decimals()
 
@@ -24,7 +28,7 @@ export async function deposit(liquidityPool: LiquidityPool, underlyingToken: Ext
 
     console.log(approveReceipt.blockHash)
 
-    const allowance = await underlyingToken.allowance(deployer.address, liquidityPool.address, transactionOverrides)
+    const allowance = await underlyingToken.allowance(deployerAddress, liquidityPool.address, transactionOverrides)
     console.log('allowance', allowance.toString())
 
     const depositTransaction = await liquidityPool.deposit(amount, transactionOverrides)

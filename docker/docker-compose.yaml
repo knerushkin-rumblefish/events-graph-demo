@@ -1,0 +1,14 @@
+# {workspaceDir}/docker/docker-compose.yaml
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:alpine
+    ports: 
+      - 5432:5432
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_DB: db
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ../cache/activity/postgres-data:/var/lib/postgresql/data

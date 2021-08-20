@@ -11,7 +11,7 @@ export async function test() {
   await queryCreatedLiquidityPoolEvents(liquidityPool)
 
   await deposit(liquidityPool, underlyingToken)
-  // await queryDepositEvents(liquidityPool)
+  await queryDepositEvents(liquidityPool)
 }
 
 test()
